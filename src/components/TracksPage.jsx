@@ -25,7 +25,14 @@ function TracksPage() {
     setTracks(newTracks)
   }
 
-  const displayedTracks = tracks.filter((tracks) => tracks.title.toLowerCase().includes(search.toLowerCase()))
+  // const displayedTracks = tracks.filter((tracks) => tracks.title.toLowerCase().includes(search.toLowerCase()))
+
+  //    ALLOWS SEARCH FUNCTION TO SEARCH FOR ANYTHING IN THE TRACKS LIST
+  const displayedTracks = tracks.filter((track) => {
+    return track.title.toLowerCase().includes(search.toLowerCase()) ||
+    track.artist.toLowerCase().includes(search.toLowerCase()) ||
+    track.BPM.toString().includes(search)
+  })
 
 
 
@@ -33,7 +40,7 @@ function TracksPage() {
     <div>
       <Search search={search} setSearch={setSearch}/>
       <AddTrackForm onNewTrackFormSubmit={handleNewTrackFormSubmit}/>
-      <TracksList tracks={displayedTracks} removeTrack={removeTrack}/>
+      <TracksList tracks={displayedTracks} removeTrack={removeTrack} />
     </div>
   )
 }
